@@ -1,0 +1,32 @@
+﻿@model People3.Models.PersonViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Person</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            <img src="@Html.DisplayFor(model => model.Image)" height="100" />
+        </dd>
+
+        <dd>
+            <a href="@Html.DisplayFor(model => model.Link)">@Html.DisplayFor(model => model.Name)</a>
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birthday) - @Html.DisplayFor(model => model.Death)
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

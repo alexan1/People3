@@ -1,0 +1,41 @@
+﻿@model IEnumerable<People3.Models.PersonViewModel>
+    @{
+        ViewData["Title"] = "Search";
+    }
+<p></p><p></p>
+<p>Please find person in Wikipedia</p>
+<form asp-controller="People" asp-action="Search" method="get">
+    <p>                             
+        Person: <input type="text" name="SearchString">
+        <input type="submit" value="Search" />
+    </p>
+</form>
+   
+        @foreach (var item in Model)
+            {
+            <form asp-action="Add" methos="post">
+                
+                <input asp-for="@item.ID"  name="ID" type="hidden"/>
+                <input asp-for="@item.Name" name="Name" type="hidden"/>
+                <input type="submit" value="Add" class="btn btn-default" />                
+                </form>
+
+               <div>
+                        <img src="@Html.DisplayFor(modelItem => item.Image)" height="100" />
+                  </div>
+                <div>
+                    
+                   
+
+                    <a href="@Html.DisplayFor(modelItem => item.Link)">@Html.DisplayFor(modelItem => item.Name)</a>
+                </div>
+                <div>
+                    @Html.DisplayFor(modelItem => item.Birthday) - @Html.DisplayFor(modelItem => item.Death)
+                </div>
+                <div>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </div>
+                
+                    
+                }
+        
