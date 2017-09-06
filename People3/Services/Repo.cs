@@ -60,7 +60,11 @@ namespace People3.Services
             var birthday = entities["claims"]["P569"];
             if (birthday != null)
             {
-                birthday2 = DateTime.TryParse(birthday[0]["mainsnak"]["datavalue"]["value"]["time"].ToString().Substring(1), out birthday1) ? birthday1 : birthday2;
+                var birth = birthday[0]?["mainsnak"]?["datavalue"]?["value"]?["time"];
+                if (birth != null)
+                {                    
+                    birthday2 = DateTime.TryParse(birth.ToString().Substring(1), out birthday1) ? birthday1 : birthday2;
+                }
             }
 
             DateTime death1 = DateTime.MinValue;
