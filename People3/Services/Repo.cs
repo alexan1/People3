@@ -72,11 +72,15 @@ namespace People3.Services
             var death = entities["claims"]["P570"];
             if (death != null)
             {
-                death1 = DateTime.TryParse(death[0]["mainsnak"]["datavalue"]["value"]["time"].ToString().Substring(1), out death1) ? death1 : DateTime.MinValue;
+                death2 = DateTime.TryParse(death[0]["mainsnak"]["datavalue"]["value"]["time"].ToString().Substring(1), out death1) ? death1 : DateTime.MinValue;
             }
 
-            var link = System.Net.WebUtility.HtmlEncode(entities["claims"]["P373"][0]["mainsnak"]["datavalue"]["value"].ToString().Replace(" ", "_")); 
-
+            var link1 = entities["claims"]?["P373"]?[0]["mainsnak"]?["datavalue"]?["value"];
+            var link = String.Empty;
+            if (link1 != null)
+            {
+                link = System.Net.WebUtility.HtmlEncode(link1.ToString().Replace(" ", "_"));
+            }
             var image1 = String.Empty;
             var imageLink = String.Empty;
             var image = entities["claims"]["P18"];
