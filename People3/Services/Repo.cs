@@ -52,7 +52,7 @@ namespace People3.Services
             var description = entities["descriptions"];
             if (description != null)
             {
-                description1 = description["en"]["value"].ToString();
+                description1 = description["en"]?["value"]?.ToString();
             }
 
             DateTime birthday1 = DateTime.MinValue;
