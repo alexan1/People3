@@ -39,6 +39,12 @@ namespace People3
                 facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
             });
 
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            });
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
