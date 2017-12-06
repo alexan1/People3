@@ -247,7 +247,7 @@ namespace People3.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction(nameof(HomeController.Index), "People");
         }
 
         [HttpPost]
@@ -335,7 +335,7 @@ namespace People3.Controllers
         {
             if (userId == null || code == null)
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(HomeController.Index), "People");
             }
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
@@ -455,7 +455,7 @@ namespace People3.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(HomeController.Index), "People");
             }
         }
 
