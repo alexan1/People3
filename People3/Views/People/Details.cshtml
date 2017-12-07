@@ -9,23 +9,24 @@
 <div>
     <h4>Person</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dd>
+    @*<dl class="dl-horizontal  col-lg-offset-0">*@
+        <div>
             <img src="@Html.DisplayFor(model => model.Image)" height="100" />
-        </dd>
-
-        <dd>
+        </div>
+    <br />
+        <div>
             <a href="@Html.DisplayFor(model => model.Link)">@Html.DisplayFor(model => model.Name)</a>
-        </dd>
-
-        <dd>
+        </div>
+    <br />
+        <div>
             @Html.DisplayFor(model => model.Birthday) - @Html.DisplayFor(model => model.Death)
-        </dd>
-
-        <dd>
+        </div>
+    <br />
+        <div>
             @Html.DisplayFor(model => model.Description)
-        </dd>
-    </dl>
+        </div>
+    <br />
+    @*</dl>*@
 </div>
 <div>
     <a asp-action="Index">Back to List</a>
