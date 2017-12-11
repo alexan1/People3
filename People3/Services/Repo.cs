@@ -90,6 +90,8 @@ namespace People3.Services
                 imageLink = imageBase + image1;
             }
 
+            var rating = await getRatingAsync(key);
+
             var person = new PersonViewModel()
             {
                 ID = key,
@@ -99,9 +101,14 @@ namespace People3.Services
                 Death = death2,
                 Image = imageLink,
                 Link = linkBase + link,
-                Rating = 10
+                Rating = rating
             };
             return person;
+        }
+
+        private async Task<decimal> getRatingAsync(int key)
+        {
+            return 10.00M;
         }
 
         public async Task<IEnumerable<PersonViewModel>> FindAsync(string name)

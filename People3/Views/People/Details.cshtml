@@ -8,25 +8,28 @@
 
 <div>
     <h4>Person</h4>
-    <hr />
-    @*<dl class="dl-horizontal  col-lg-offset-0">*@
-        <div>
-            <img src="@Html.DisplayFor(model => model.Image)" height="100" />
-        </div>
+    <hr />    
+    <div>
+        <img src="@Html.DisplayFor(model => model.Image)" height="100" />
+    </div>
     <br />
-        <div>
-            <a href="@Html.DisplayFor(model => model.Link)">@Html.DisplayFor(model => model.Name)</a>
-        </div>
+    <div>
+        <a href="@Html.DisplayFor(model => model.Link)">@Html.DisplayFor(model => model.Name)</a>
+    </div>
     <br />
-        <div>
-            @Html.DisplayFor(model => model.Birthday) - @Html.DisplayFor(model => model.Death)
-        </div>
+    <div>
+        @Html.DisplayFor(model => model.Birthday) - @Html.DisplayFor(model => model.Death)
+    </div>
     <br />
-        <div>
-            @Html.DisplayFor(model => model.Description)
-        </div>
+    <div>
+        @Html.DisplayFor(model => model.Description)
+    </div>    
     <br />
-    @*</dl>*@
+    <div>
+        <label asp-for="Rating"></label>
+        @Html.DisplayFor(model => model.Rating)
+    </div>
+    <br />
 </div>
 <div>
     <a asp-action="Index">Back to List</a>
