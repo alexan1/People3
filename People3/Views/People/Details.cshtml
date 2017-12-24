@@ -8,7 +8,7 @@
 
 <div>
     <h4>Person</h4>
-    <hr />    
+    <hr />
     <div>
         <img src="@Html.DisplayFor(model => model.Image)" height="100" />
     </div>
@@ -23,14 +23,41 @@
     <br />
     <div>
         @Html.DisplayFor(model => model.Description)
-    </div>    
+    </div>
     <br />
     <div>
         <label asp-for="Rating"></label>
         @Html.DisplayFor(model => model.Rating)
     </div>
     <br />
-</div>
+    <form asp-controller="Home" asp-action="Index" method="post" class="form-horizontal">        
+        <div class="form-group">
+            <label asp-for="Rating" class="col-lg-1 col-sm-1 control-label">Rating</label>
+            <div class="col-lg-8">
+                <span class="rating">
+                    @for (int i = 1; i <= 10; i++)
+                    {
+                        var starClass = "star";
+                        if (Model.Rating == 11 - i)
+                        {
+                            starClass += " active";
+                        }
+                        <span data-value="@(11 - i)" class="@starClass"></span>
+                    }
+                </span>
+            </div>
+            <input asp-for="Rating" />
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" class="btn btn-primary" value="Submit" />
+            </div>
+        </div>
+    </form>
+    @section Scripts {
+        <script src="~/js/rating.js"></script>
+        }
+    </div>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
