@@ -107,8 +107,9 @@ namespace People3.Services
         }
 
         private async Task<decimal> getRatingAsync(int key)
-        {
-            return 10.00M;
+        {            
+            var RatingAverage = await _context.Rating.Where(r => r.PersonID == key).AverageAsync(r => r.Rate);
+            return RatingAverage;
         }
 
         public async Task<IEnumerable<PersonViewModel>> FindAsync(string name)
