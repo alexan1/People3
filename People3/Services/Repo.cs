@@ -45,7 +45,7 @@ namespace People3.Services
             var client = new HttpClient();
             var json = await client.GetStringAsync(url);
             var results = JObject.Parse(json);
-            var entities = results["entities"][itemID];            
+            var entities = results["entities"]?[itemID];            
             var name = entities["labels"]["en"]["value"].ToString();
 
             var description1 = String.Empty;
@@ -107,9 +107,17 @@ namespace People3.Services
         }
 
         private async Task<decimal> getRatingAsync(int key)
-        {            
-            var RatingAverage = await _context.Rating.Where(r => r.PersonID == key).AverageAsync(r => r.Rate);
-            return RatingAverage;
+        {
+            try
+            {
+                var RatingAverage = await _context.Rating.Where(r => r.PersonID == key)?.AverageAsync(r => r.Rate);
+                var result = Convert.ToDecimal(RatingAverage);
+                return result;
+            }
+            catch
+            {
+                return 0.0M;
+            }
         }
 
         public async Task<IEnumerable<PersonViewModel>> FindAsync(string name)
@@ -190,6 +198,17 @@ namespace People3.Services
         public async Task<IEnumerable<Person>> GetAllAsync()
         {
             return await _context.Person.ToListAsync();
+        }
+        public async Task<int> RateAsync(Person item, int rate)
+        {
+            var rating = new Rating {
+                Rate = rate,
+                UserID = "Q" + item.ID.ToString(),
+                PersonID = 1
+            };
+            var res1 = await _context.Rating.AddAsync(rating);
+            var res = await _context.SaveChangesAsync();
+            return res;
         }
     }
 }

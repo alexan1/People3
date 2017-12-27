@@ -9,6 +9,6 @@ namespace People3.Models
     {
         public int PersonID { get; set; }
         public string UserID { get; set; }
-        public decimal Rate { get; set; }
+        public int Rate { get; set; }
     }
 }

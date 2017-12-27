@@ -67,5 +67,15 @@ namespace People3.Controllers
             }            
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        public async Task<IActionResult> RateAsync(Person person, int rate)
+        {
+            if (ModelState.IsValid)
+            {
+                await _repo.RateAsync(person, rate);
+                return RedirectToAction("Details", new { id = person.ID });
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

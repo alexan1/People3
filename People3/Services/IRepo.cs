@@ -12,5 +12,7 @@ namespace People3.Services
         Task<IEnumerable<Person>> GetAllAsync();
         Task<PersonViewModel> DetailAsync(int key);        
         Task<IEnumerable<PersonViewModel>> FindAsync(string name);
+        Task<int> RateAsync(Person item, int rate);
+
     }
 }
