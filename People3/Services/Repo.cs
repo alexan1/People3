@@ -203,7 +203,7 @@ namespace People3.Services
         {
             var rating = new Rating {
                 Rate = rate,
-                UserID = "Q" + item.ID.ToString(),
+                UserID = item.ID,
                 PersonID = 1
             };
             var res1 = await _context.Rating.AddAsync(rating);

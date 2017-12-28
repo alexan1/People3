@@ -11,8 +11,8 @@ using System;
 namespace People3.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171226053414_rating")]
-    partial class rating
+    [Migration("20171228044648_rating2")]
+    partial class rating2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -195,9 +195,9 @@ namespace People3.Data.Migrations
                 {
                     b.Property<int>("PersonID");
 
-                    b.Property<string>("UserID");
+                    b.Property<int>("UserID");
 
-                    b.Property<decimal>("Rate");
+                    b.Property<int>("Rate");
 
                     b.HasKey("PersonID", "UserID");
 

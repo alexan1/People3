@@ -194,7 +194,7 @@ namespace People3.Data.Migrations
                 {
                     b.Property<int>("PersonID");
 
-                    b.Property<string>("UserID");
+                    b.Property<int>("UserID");
 
                     b.Property<int>("Rate");
 

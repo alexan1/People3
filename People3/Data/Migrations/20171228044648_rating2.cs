@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace People3.Data.Migrations
 {
-    public partial class rating : Migration
+    public partial class rating2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,8 +13,8 @@ namespace People3.Data.Migrations
                 columns: table => new
                 {
                     PersonID = table.Column<int>(type: "int", nullable: false),
-                    UserID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Rate = table.Column<decimal>(type: "decimal(18, 2)", nullable: false)
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    Rate = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -30,7 +30,7 @@
         @Html.DisplayFor(model => model.Rating)
     </div>
     
-    <form asp-action="RateSync" method="post" class="form-horizontal">        
+    <form asp-action="RateAsync" method="post" class="form-horizontal">        
         <div class="form-group">
             <div class="col-lg-8">
                 @*<label asp-for="Rating" class="col-md-10 col-lg-1 col-sm-1 control-label">Rate</label>*@
@@ -48,6 +48,7 @@
                 </span>
             </div>
             <div class="col-md-10">
+                <input asp-for="ID" name="ID" type="hidden" />
                 <input asp-for="Rating" />
             </div>
         </div>
