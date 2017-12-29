@@ -8,16 +8,24 @@ using Microsoft.EntityFrameworkCore;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using System.Xml;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+using System.Security.Principal;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
 
 namespace People3.Services
 {
     public class Repo : IRepo
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public Repo(ApplicationDbContext context)
+        public Repo(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+
         }
 
         public async Task<int> AddAsync(Person item)
@@ -108,6 +116,9 @@ namespace People3.Services
 
         private async Task<decimal> getRatingAsync(int key)
         {
+
+            //return await _context.Person.
+
             try
             {
                 var RatingAverage = await _context.Rating.Where(r => r.PersonID == key)?.AverageAsync(r => r.Rate);
@@ -201,14 +212,30 @@ namespace People3.Services
         }
         public async Task<int> RateAsync(Person item, int rate)
         {
+            //var userId = GetUserId();
+            ClaimsPrincipal User
+            var userId = _userManager.GetUserId(User);
             var rating = new Rating {
                 Rate = rate,
-                UserID = item.ID,
-                PersonID = 1
+                UserID = userId,
+                PersonID = item.ID
             };
             var res1 = await _context.Rating.AddAsync(rating);
             var res = await _context.SaveChangesAsync();
             return res;
         }
+
+        //public static string GetUserId(this IPrincipal principal)
+        //{
+        //    var claimsIdentity = (ClaimsIdentity)principal.Identity;
+        //    var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+        //    return claim.Value;
+        //}
+
+        //private Task<ApplicationUser> GetCurrentUserAsync()
+        //{
+        //    var user = new HttpContext;
+        //    return _userManager.GetUserAsync(principal: HttpContext.User);
+        //}
     }
 }

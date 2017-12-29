@@ -8,7 +8,7 @@ namespace People3.Models
     public class Rating
     {
         public int PersonID { get; set; }
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public int Rate { get; set; }
     }
 }
