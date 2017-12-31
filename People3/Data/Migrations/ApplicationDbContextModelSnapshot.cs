@@ -194,7 +194,7 @@ namespace People3.Data.Migrations
                 {
                     b.Property<int>("PersonID");
 
-                    b.Property<int>("UserID");
+                    b.Property<string>("UserID");
 
                     b.Property<int>("Rate");
 
@@ -245,6 +245,14 @@ namespace People3.Data.Migrations
                     b.HasOne("People3.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("People3.Models.Rating", b =>
+                {
+                    b.HasOne("People3.Models.Person")
+                        .WithMany("Rate")
+                        .HasForeignKey("PersonID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

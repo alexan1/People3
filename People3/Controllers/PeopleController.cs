@@ -5,16 +5,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using People3.Services;
 using People3.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace People3.Controllers
 {
     public class PeopleController : Controller
     {
         private readonly IRepo _repo;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public PeopleController(IRepo repo)
+        public PeopleController(IRepo repo, UserManager<ApplicationUser> userManager)
         {
             _repo = repo;
+            _userManager = userManager;
         }
 
         // GET: People
@@ -29,9 +32,9 @@ namespace People3.Controllers
             if (id == null)
             {
                 return NotFound();
-            }
+            }            
 
-            var person = await _repo.DetailAsync(id);
+            var person = await _repo.DetailAsync(id);            
 
             if (person == null)
             {
@@ -70,11 +73,16 @@ namespace People3.Controllers
         [HttpPost]
         public async Task<IActionResult> RateAsync(Person person, int rate)
         {
-            if (ModelState.IsValid)
+
+            string userID;
+
+            if (User.Identity.IsAuthenticated && ModelState.IsValid)
             {
-                await _repo.RateAsync(person, rate);
+                userID = _userManager.GetUserId(User);
+                await _repo.RateAsync(person, userID, rate);
                 return RedirectToAction("Details", new { id = person.ID });
             }
+            
             return RedirectToAction("Index");
         }
     }

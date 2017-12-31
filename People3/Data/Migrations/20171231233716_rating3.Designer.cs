@@ -11,8 +11,8 @@ using System;
 namespace People3.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171228044648_rating2")]
-    partial class rating2
+    [Migration("20171231233716_rating3")]
+    partial class rating3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -195,7 +195,7 @@ namespace People3.Data.Migrations
                 {
                     b.Property<int>("PersonID");
 
-                    b.Property<int>("UserID");
+                    b.Property<string>("UserID");
 
                     b.Property<int>("Rate");
 
@@ -246,6 +246,14 @@ namespace People3.Data.Migrations
                     b.HasOne("People3.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("People3.Models.Rating", b =>
+                {
+                    b.HasOne("People3.Models.Person")
+                        .WithMany("Rate")
+                        .HasForeignKey("PersonID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

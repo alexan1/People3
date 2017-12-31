@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using System.Security.Principal;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace People3.Services
 {
@@ -116,7 +117,6 @@ namespace People3.Services
 
         private async Task<decimal> getRatingAsync(int key)
         {
-
             //return await _context.Person.
 
             try
@@ -210,32 +210,16 @@ namespace People3.Services
         {
             return await _context.Person.ToListAsync();
         }
-        public async Task<int> RateAsync(Person item, int rate)
-        {
-            //var userId = GetUserId();
-            ClaimsPrincipal User
-            var userId = _userManager.GetUserId(User);
+        public async Task<int> RateAsync(Person item, string userID, int rate)
+        {                   
             var rating = new Rating {
                 Rate = rate,
-                UserID = userId,
+                UserID = userID,
                 PersonID = item.ID
             };
             var res1 = await _context.Rating.AddAsync(rating);
             var res = await _context.SaveChangesAsync();
             return res;
-        }
-
-        //public static string GetUserId(this IPrincipal principal)
-        //{
-        //    var claimsIdentity = (ClaimsIdentity)principal.Identity;
-        //    var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-        //    return claim.Value;
-        //}
-
-        //private Task<ApplicationUser> GetCurrentUserAsync()
-        //{
-        //    var user = new HttpContext;
-        //    return _userManager.GetUserAsync(principal: HttpContext.User);
-        //}
+        }       
     }
 }
