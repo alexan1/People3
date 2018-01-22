@@ -117,7 +117,10 @@ namespace People3.Services
 
         private async Task<decimal> getRatingAsync(int key)
         {
-            //return await _context.Person.
+            //var person = await _context.FindAsync(typeof(Person), key);
+            //var average = person
+            //    .i
+            //return ((Person)person).Rate.Average<Rating>;
 
             try
             {
@@ -210,6 +213,7 @@ namespace People3.Services
         {
             return await _context.Person.ToListAsync();
         }
+
         public async Task<int> RateAsync(Person item, string userID, int rate)
         {                   
             var rating = new Rating {
@@ -217,9 +221,16 @@ namespace People3.Services
                 UserID = userID,
                 PersonID = item.ID
             };
-            var res1 = await _context.Rating.AddAsync(rating);
-            var res = await _context.SaveChangesAsync();
-            return res;
+            try
+            {
+                var res1 = await _context.Rating.AddAsync(rating);
+                var res = await _context.SaveChangesAsync();
+                return res;
+            }
+            catch
+            {
+                return -1;
+            }
         }       
     }
 }
