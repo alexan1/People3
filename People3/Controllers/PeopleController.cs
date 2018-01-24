@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using People3.Services;
 using People3.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace People3.Controllers
 {
@@ -58,6 +59,7 @@ namespace People3.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(Person person)
@@ -70,6 +72,7 @@ namespace People3.Controllers
             }            
             return RedirectToAction("Index");
         }
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> RateAsync(Person person, int rate)
         {
