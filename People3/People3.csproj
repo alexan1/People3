@@ -5,6 +5,10 @@
     <UserSecretsId>aspnet-People3-673E37FF-51BF-4B3F-A4AE-1DCF4A40D8BD</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Properties\PublishProfiles\PeopleRate - Web Deploy.pubxml" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
