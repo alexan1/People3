@@ -7,13 +7,7 @@ using People3.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
-using System.Xml;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Http;
-using System.Security.Principal;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 
 namespace People3.Services
 {
