@@ -13,20 +13,24 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                    @Html.DisplayNameFor(model => model.Name)                    
                 </th>
-                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rate)
+                </th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        <a asp-action="Details" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.Name)</a>
-                    </td>
-                    <td></td>
-                </tr>
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.Name)</a>
+                </td>
+                <td>
+                    @item.Rate.Average(i => i.Rate)
+                </td>
+            </tr>
             }
         </tbody>
     </table>

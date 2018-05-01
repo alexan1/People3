@@ -205,7 +205,7 @@ namespace People3.Services
 
         public async Task<IEnumerable<Person>> GetAllAsync()
         {
-            return await _context.Person.ToListAsync();
+            return await _context.Person.Include(person => person.Rate).ToListAsync();
         }
 
         public async Task<int> RateAsync(Person item, string userID, int rate)
