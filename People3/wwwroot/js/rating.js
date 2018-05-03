@@ -7,6 +7,7 @@
                 $(this).addClass('active');
                 var starValue = $(this).data("value");
                 $("#Rating").val(starValue);
+                $("#RateForm").submit();
             })
         }
         $this.init = function () {
