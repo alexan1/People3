@@ -221,6 +221,12 @@ namespace People3.Services
                 var res = await _context.SaveChangesAsync();
                 return res;
             }
+            catch (DbUpdateException)
+            {
+                var res1 = _context.Rating.Update(rating);
+                var res = await _context.SaveChangesAsync();
+                return res;
+            }
             catch
             {
                 return -1;

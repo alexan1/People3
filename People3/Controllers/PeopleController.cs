@@ -82,8 +82,11 @@ namespace People3.Controllers
             if (User.Identity.IsAuthenticated && ModelState.IsValid)
             {
                 userID = _userManager.GetUserId(User);
-                await _repo.RateAsync(person, userID, rate);
-                return RedirectToAction("Details", new { id = person.ID });
+                var res = await _repo.RateAsync(person, userID, rate);
+                if (res > 0)
+                {
+                    return RedirectToAction("Details", new { id = person.ID });
+                }
             }
             
             return RedirectToAction("Index");
