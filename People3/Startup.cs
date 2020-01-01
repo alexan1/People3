@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using People3.Data;
 using People3.Models;
 using People3.Services;
@@ -48,12 +45,13 @@ namespace People3
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
-            services.AddMvc();
+            //services.AddMvc();
+            services.AddControllersWithViews();
             services.AddScoped<IRepo, Repo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -67,15 +65,18 @@ namespace People3
             }
 
             app.UseStaticFiles();
-
+            app.UseRouting();
             app.UseAuthentication();
+            app.UseAuthorization();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=People}/{action=Index}/{id?}");
+            app.UseEndpoints(endpoints => {
+                //endpoints.MapControllers();
+                endpoints.MapControllerRoute("default", "{controller=People}/{action=Index}/{id?}");
+
             });
+
+
+
         }
     }
 }
