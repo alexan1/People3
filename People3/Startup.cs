@@ -73,9 +73,6 @@ namespace People3
                 endpoints.MapControllers();
                 endpoints.MapControllerRoute("default", "{controller=People}/{action=Index}/{id?}");
             });
-
-
-
         }
     }
 }
