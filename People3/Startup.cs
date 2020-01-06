@@ -46,7 +46,8 @@ namespace People3
             services.AddTransient<IEmailSender, EmailSender>();
 
             //services.AddMvc();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson(); 
+            
             services.AddScoped<IRepo, Repo>();
         }
 

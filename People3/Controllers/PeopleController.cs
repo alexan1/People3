@@ -45,6 +45,8 @@ namespace People3.Controllers
             return View(person);
         }
 
+        [AllowAnonymous]
+        [HttpGet]
         public async Task<IActionResult> Search(string SearchString)
         {
             IEnumerable<PersonViewModel> FoundPersons = new List<PersonViewModel>();
