@@ -46,7 +46,8 @@ namespace People3
             services.AddTransient<IEmailSender, EmailSender>();
 
             //services.AddMvc();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson(); 
+            
             services.AddScoped<IRepo, Repo>();
         }
 
@@ -70,13 +71,9 @@ namespace People3
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => {
-                //endpoints.MapControllers();
+                endpoints.MapControllers();
                 endpoints.MapControllerRoute("default", "{controller=People}/{action=Index}/{id?}");
-
             });
-
-
-
         }
     }
 }

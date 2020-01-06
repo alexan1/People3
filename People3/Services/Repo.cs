@@ -141,7 +141,9 @@ namespace People3.Services
                 "GROUP BY ?item ?itemLabel ?itemDescription";
             var url = urlBase + "?query=" + query + "&format=json";
             var client = new HttpClient();
-            var json = await client.GetStringAsync(url);           
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36");
+            var json = await client.GetStringAsync(url);
+            //var jsonStr = json.ToString();
             var results = JObject.Parse(json);
             var entities = results["results"]["bindings"];
             //var count = entities.Count();
