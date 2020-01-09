@@ -39,7 +39,7 @@ namespace People3.Services
 
         public async Task<PersonViewModel> DetailAsync(int key)
         {
-            const string imageBase = "http://commons.wikimedia.org/wiki/Special:FilePath/";
+            const string imageBase = "https://commons.wikimedia.org/wiki/Special:FilePath/";
             const string linkBase = "https://en.wikipedia.org/wiki/";
             const string urlBase = "https://www.wikidata.org/w/api.php?action=wbgetentities&ids=";
             const string urlOptions = "&format=json&languages=en&props=labels|descriptions|claims";
